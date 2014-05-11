@@ -9,6 +9,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ChatClient implements Runnable {
+
+    private final static int PORT = 1234;
+    private final static String HOST = "148.251.65.173";
     
     private static Socket clientSocket = null;
     private static PrintStream outputStream = null;
@@ -17,11 +20,9 @@ public class ChatClient implements Runnable {
     private static BufferedReader inputLine = null;
     
     public static void main(String[] args) throws IOException {
-        int port = 1234;
-        String host = "localhost";
         
         try {
-            clientSocket = new Socket(host, port);
+            clientSocket = new Socket(HOST, PORT);
             inputLine = new BufferedReader(new InputStreamReader(System.in));
             outputStream = new PrintStream(clientSocket.getOutputStream());
             inputStream = new DataInputStream(clientSocket.getInputStream());
